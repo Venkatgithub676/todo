@@ -26,5 +26,11 @@ Content-Type:application/json
   "status": "TO DO"
 }
 
+### 
+PUT http://localhost:3000/todos/4/
+Content-Type : application/json
+
+{ "status": "DONE" }
+
 ###
 DELETE http://localhost:3000/todos/10/

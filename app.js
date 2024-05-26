@@ -75,6 +75,13 @@ app.post("/todos/", async (request, response) => {
   response.send("Todo Successfully Added");
 });
 
+// put todo api
+
+app.put("/todos/:todoId/", async (request, response) => {
+  const { todoId } = request.params;
+  const { status = "", priority = "", todo = "" } = request.body;
+});
+
 // delete a todo api
 
 app.delete("/todos/:todoId/", async (request, response) => {
