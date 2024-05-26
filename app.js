@@ -23,4 +23,14 @@ const initializeDBAndServer = async () => {
 };
 
 initializeDBAndServer();
+
 module.exports = app;
+
+// get todos api
+
+app.get("/todos/", async (request, response) => {
+  const { status = "", priority = "", search_q = "" } = request.query;
+  const query1 = `select * from todo where status='${status}';`;
+  const query2 = `select * from todo where priority='${priority}';`;
+  const query3 = `select * from todo where status='${status}' and priority='${priority}';`;
+});
