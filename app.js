@@ -33,4 +33,28 @@ app.get("/todos/", async (request, response) => {
   const query1 = `select * from todo where status='${status}';`;
   const query2 = `select * from todo where priority='${priority}';`;
   const query3 = `select * from todo where status='${status}' and priority='${priority}';`;
+  const query4 = `select * from todo where todo like '%${search_q}%'`;
+  let res = null;
+  const a = status !== "";
+  const b = priority !== "";
+  const c = status !== "" && priority !== "";
+  const d = search_q !== "";
+  switch (a || b || c || d) {
+    case a:
+      res = await db.all(query1);
+      console.log("A");
+      break;
+    case b:
+      res = await db.all(query2);
+      console.log("B");
+      break;
+    case c:
+      res = await db.all(query3);
+      console.log("C");
+      break;
+    case d:
+      res = await db.all(query4);
+      break;
+  }
+  response.send(res);
 });
