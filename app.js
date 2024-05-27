@@ -80,6 +80,25 @@ app.post("/todos/", async (request, response) => {
 app.put("/todos/:todoId/", async (request, response) => {
   const { todoId } = request.params;
   const { status = "", priority = "", todo = "" } = request.body;
+  const query1 = `select * from todo where ;`;
+  let query = null;
+  let stat = null;
+
+  switch (status !== "" || priority !== "" || todo !== "") {
+    case status !== "":
+      query = `update todo set status='${status}' where id=${todoId};`;
+      stat = "Status";
+      break;
+    case priority !== "":
+      query = `update todo set priority='${priority}' where id=${todoId};`;
+      stat = "Priority";
+      break;
+    case todo !== "":
+      query = `update todo set  todo='${todo}' where id=${todoId};`;
+      stat = "Todo";
+  }
+  let res = db.run(query);
+  response.send(`${stat} Updated`);
 });
 
 // delete a todo api
